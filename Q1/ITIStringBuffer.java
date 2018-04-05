@@ -51,8 +51,8 @@ public class ITIStringBuffer {
 
 	tempString = null;
 
-	for (char c : nextString.toCharArray()) {
-	    charList.add(c);
+	for (int i = 0; i < nextString.length(); i++) {
+	    charList.add(nextString.charAt(i));
 	}
 
     }
