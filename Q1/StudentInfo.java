@@ -1,5 +1,5 @@
-// Student name: Rawad Aboudlal
-// Student number: 8262710
+// Student name: Rawad Aboudlal , Ismail Ali
+// Student number: 8262710, 300008883
 // Course code: ITI 1121-C
 
 // Assignment: #4
@@ -22,8 +22,8 @@ public class StudentInfo {
     public static void display() {
 
 	System.out.println("************************************************************");
-	System.out.println("* Name: Rawad Aboudlal                                     *");
-	System.out.println("* Student Number: 8262710                                  *");
+	System.out.println("* Name: Rawad Aboudlal, Ismail Ali                         *");
+	System.out.println("* Student Number: 8262710, 300008883                       *");
 	System.out.println("* Course number and Section: ITI1121-C                     *");
 	System.out.println("* Assignment: #4                                           *");
 	System.out.println("************************************************************");

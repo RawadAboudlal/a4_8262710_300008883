@@ -1,5 +1,5 @@
-// Student name: Rawad Aboudlal
-// Student number: 8262710
+// Student name: Rawad Aboudlal, Ismail Ali
+// Student number: 8262710, 300008883
 // Course code: ITI 1121-C
 
 // Assignment: #4
