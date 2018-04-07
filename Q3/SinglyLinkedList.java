@@ -8,6 +8,18 @@ import java.util.*;
 
 public class SinglyLinkedList<E> implements List<E>, Iterable<E> {
 
+    /**
+     * Returns the number of elements in the list between the first instance of
+     * <code>fromElement</code> and the first instance of <code>toElement</code>,
+     * including both.
+     * 
+     * @param fromElement
+     *            The element to start counting from.
+     * @param toElement
+     *            The element to stop counting at.
+     * @return The number elements from the first <code>fromElement</code> to the
+     *         first <code>toElement</code>, inclusively.
+     */
     public int count(E fromElement, E toElement) {
 
 	if (fromElement == null) {
@@ -20,23 +32,42 @@ public class SinglyLinkedList<E> implements List<E>, Iterable<E> {
 
     }
 
-    private int count(Node<E> from, E fromElement, E toElement, boolean seen) {
+    /**
+     * Helper method for {@link #count(Object, Object)}. This method does the actual
+     * recursive processing to get the number of elements between
+     * <code>toElement</code> and <code>fromElement</code>, inclusively.
+     * 
+     * @param node
+     *            The current {@link Node} that needs to be checked.
+     * @param fromElement
+     *            The element to start counting from.
+     * @param toElement
+     *            The element to stop counting at.
+     * @param seen
+     *            This value dictates whether an element should be counted or not
+     *            and is <code>true</code> when <code>fromElement</code> has already
+     *            been seen while traversing the list.
+     * @return The number elements from the first <code>fromElement</code> to the
+     *         first <code>toElement</code>, inclusively.
+     * @see #count(Node, Object, Object, boolean)
+     */
+    private int count(Node<E> node, E fromElement, E toElement, boolean seen) {
 
-	if (from == null) {
+	if (node == null) {
 	    return 0;
 	}
 
 	if (seen) {
-	    if (from.value.equals(toElement)) {
+	    if (node.value.equals(toElement)) {
 		return 1;
 	    } else {
-		return 1 + count(from.next, fromElement, toElement, true);
+		return 1 + count(node.next, fromElement, toElement, true);
 	    }
 	} else {
-	    if (from.value.equals(fromElement)) {
-		return 1 + count(from.next, fromElement, toElement, true);
+	    if (node.value.equals(fromElement)) {
+		return 1 + count(node.next, fromElement, toElement, true);
 	    } else {
-		return count(from.next, fromElement, toElement, false);
+		return count(node.next, fromElement, toElement, false);
 	    }
 	}
 

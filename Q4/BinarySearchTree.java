@@ -4,16 +4,6 @@
 
 // Assignment: #4
 
-/**
- * @author Marcel Turcotte
- */
-
-/**
- * 
- * @author Rawad Aboudlal (rabou017@uottawa.ca)
- *
- * @param <E>
- */
 public class BinarySearchTree<E extends Comparable<E>> {
 
     private static class Node<T> {
@@ -30,6 +20,31 @@ public class BinarySearchTree<E extends Comparable<E>> {
 
     private Node<E> root = null;
 
+    /**
+     * <p>
+     * Calculates the number of elements in the tree that are greater than or equal
+     * to <code>low</code> and smaller than or equal to <code>high</code>.
+     * </p>
+     * 
+     * <p>
+     * In order to do this, this method first calculates the distance from the
+     * {@link #root} element to each of <code>low</code> and <code>high</code>. Then
+     * it will find the lowest common ancestor, in this binary tree, of these two
+     * elements. Finally, to get the number of elements between <code>low</code> and
+     * <code>high</code>, the following formula is applied: </br>
+     * </br>
+     * <code>distance = count(root, low) + count(root, high) - (2 * count(root,
+     * lowestCommonAncestor) - 1)</code>
+     * </p>
+     * 
+     * @param low
+     *            The smaller element/lower bound to start counting from.
+     * @param high
+     *            The larger element/upper bound to stop counting at.
+     * @return The number elements between <code>low</code> and <code>high</code>,
+     *         inclusively.
+     * @see #count(Node, Comparable)
+     */
     public int count(E low, E high) {
 
 	if (low == null || high == null) {
@@ -42,6 +57,19 @@ public class BinarySearchTree<E extends Comparable<E>> {
 
     }
 
+    /**
+     * This is the helper method that does all the work in terms of counting the
+     * number of elements from a {@link Node} to a {@link Node}, with element as its
+     * value, in the tree.
+     * 
+     * @param node
+     *            The {@link Node} to start counting from.
+     * @param value
+     *            The element whose {@link Node} we count to.
+     * @return The number of nodes from <code>node</code> to <code>value</code>,
+     *         inclusively.
+     * @see #findLowestCommonAncestor(Node, Comparable, Comparable)
+     */
     private int count(Node<E> node, E value) {
 
 	if (node == null) {
@@ -60,6 +88,30 @@ public class BinarySearchTree<E extends Comparable<E>> {
 
     }
 
+    /**
+     * This is a helper method that find the lowest common ancestor between two
+     * elements in the tree. A {@link Node} is considered a "lowest common ancestor"
+     * (LCA) between two other nodes further down in the tree if:
+     * <ol>
+     * <li>This LCA has one node in its left subtree <b>and</b> the other node in
+     * its right subtree; or</li>
+     * <li>This LCA has both nodes in its left subtree; or</li>
+     * <li>This LCA has both nodes in its right subtree</li>
+     * </ol>
+     * </br>
+     * Note that this implementation uses two {@link Comparable} values that are in
+     * this tree to find the LCA.
+     * 
+     * @param node
+     *            The current {@link Node} used to check whether it matches the
+     *            criteria of a LCA node.
+     * @param value1
+     *            The value of the first node.
+     * @param value2
+     *            The value of the second node.
+     * @return The lowest common ancestor node of <code>value1</code> and
+     *         <code>value2</code> in this tree.
+     */
     private Node<E> findLowestCommonAncestor(Node<E> node, E value1, E value2) {
 
 	if (node == null) {
