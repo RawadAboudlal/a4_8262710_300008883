@@ -40,6 +40,14 @@ public class ITIStringBuffer {
 
     }
 
+    /**
+     * Constructor for this {@link ITIStringBuffer} that is initialized containing
+     * <code>firstString</code>.
+     * 
+     * @param firstString
+     *            The <code>String</code> with which this {@link ITIStringBuffer}
+     *            should be initialized with.
+     */
     public ITIStringBuffer(String firstString) {
 	this();
 
@@ -47,6 +55,12 @@ public class ITIStringBuffer {
 
     }
 
+    /**
+     * Appends the <code>String nextString</code> to this {@link ITIStringBuffer}.
+     * 
+     * @param nextString
+     *            The <code>String</code> to append.
+     */
     public void append(String nextString) {
 
 	tempString = null;
@@ -57,6 +71,16 @@ public class ITIStringBuffer {
 
     }
 
+    /**
+     * Generates a {@link String} object from the <code>character</code> information
+     * stored in the {@link #charList}. This method stores the generated
+     * <code>String</code> in {@link #tempString} to allow for minimum regeneration
+     * time. Note that {@link #tempString} is reset to null in the
+     * {@link #append(String)} method.
+     * 
+     * @see java.lang.Object#toString()
+     * @see ITIStringBuffer#append(String)
+     */
     @Override
     public String toString() {
 

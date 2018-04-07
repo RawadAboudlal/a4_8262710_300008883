@@ -30,11 +30,28 @@ public class LinkedList<E> implements List<E> {
 	size = 0;
     }
 
+    /**
+     * An {@link Iterator} that is made specifically to iterate through this
+     * {@link LinkedList}.
+     * 
+     * @author Rawad Aboudlal (rabou017@uottawa.ca)
+     * 
+     * @see LinkedList
+     * 
+     */
     private class LinkedListIterator implements Iterator<E> {
 
 	private Node<E> current = head;
 	private int nextIndex;
 
+	/**
+	 * Initializes this {@link LinkedListIterator} with the given
+	 * <code>nextIndex</code>.
+	 * 
+	 * @param nextIndex
+	 *            The index returned by calling this iterator's {@link #nextIndex}
+	 *            method.
+	 */
 	private LinkedListIterator(int nextIndex) {
 	    this.nextIndex = nextIndex;
 
@@ -44,15 +61,37 @@ public class LinkedList<E> implements List<E> {
 
 	}
 
+	/**
+	 * Base constructor, initializing {@link nextIndex} to a value of 0.
+	 */
 	private LinkedListIterator() {
 	    nextIndex = 0;
 	}
 
+	/**
+	 * Returns <code>true</code> if this iterator has more elements to iterate over
+	 * from this {@link LinkedList}.
+	 * 
+	 * @return <code>true</code> if the <code>Node</code> after {@link #current} is
+	 *         not the {@link LinkedList#head} <code>Node</code>.
+	 * 
+	 * @see Iterator#hasNext()
+	 * 
+	 */
 	@Override
 	public boolean hasNext() {
 	    return (current.next != head);
 	}
 
+	/**
+	 * Gets the next element in this {@link LinkedList} at the position of
+	 * {@link #nextIndex}.
+	 * 
+	 * @return The next element according to this iterator.
+	 * 
+	 * @see Iterator#next()
+	 * 
+	 */
 	@Override
 	public E next() {
 
