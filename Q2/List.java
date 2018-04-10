@@ -12,4 +12,6 @@ public interface List<E> {
     E get(int index);
 
     Iterator<E> iterator();
+    
+    Iterator<E> iterator(Iterator<E> other);
 }
