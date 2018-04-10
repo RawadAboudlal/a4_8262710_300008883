@@ -120,6 +120,14 @@ public class LinkedList<E> implements List<E> {
     public Iterator<E> iterator() {
 	return new LinkedListIterator();
     }
+	  public Iterator<E> iterator (int nextIndex){
+        if( nextIndex < 0 || nextIndex > size){throw new IndexOutOfBoundsException();}
+        return new LinkedListIterator(nextIndex);
+    }
+    public Iterator <E> iterator( Iterator <E> other){
+      return new LinkedListIterator(other.nextIndex());
+    }
+
 
     @Override
     public int size() {
