@@ -1,5 +1,5 @@
-// Student name: Rawad Aboudlal
-// Student number: 8262710
+// Student name: Rawad Aboudlal, Ismail Ali
+// Student number: 8262710, 300008883
 // Course code: ITI 1121-C
 
 // Assignment: #4
@@ -62,10 +62,21 @@ public class LinkedList<E> implements List<E> {
 	}
 
 	/**
+	 * Initializes this {@link LinkedListIterator} starting at the
+	 * <code>nextIndex</code> of <code>other</code>.
+	 * 
+	 * @param other
+	 *            The other {@link Iterator} object to get the next index from.
+	 */
+	private LinkedListIterator(Iterator<E> other) {
+	    this(other.nextIndex());
+	}
+
+	/**
 	 * Base constructor, initializing {@link nextIndex} to a value of 0.
 	 */
 	private LinkedListIterator() {
-	    nextIndex = 0;
+	    this(0);
 	}
 
 	/**
@@ -119,6 +130,44 @@ public class LinkedList<E> implements List<E> {
     @Override
     public Iterator<E> iterator() {
 	return new LinkedListIterator();
+    }
+
+    /**
+     * Creates an iterator, over this list, that starts at the specified
+     * <code>nextIndex</code>.
+     * 
+     * @param nextIndex
+     *            The index of the element that is to be returned upon the next call
+     *            to {@link Iterator#next()}.
+     * @return An {@link Iterator} object over this linked list.
+     * 
+     * @see List#iterator(int)
+     */
+    @Override
+    public Iterator<E> iterator(int nextIndex) {
+
+	if (nextIndex < 0 || nextIndex >= size) {
+	    throw new IndexOutOfBoundsException();
+	}
+
+	return new LinkedListIterator(nextIndex);
+
+    }
+
+    /**
+     * 
+     * @param other
+     *            The reference {@link Iterator} object from which to copy over the
+     *            iteration information..
+     * 
+     * @return An {@link Iterator} object that starts at the same index as
+     *         <code>other</code>.
+     * 
+     * @see List#iterator(Iterator)
+     */
+    @Override
+    public Iterator<E> iterator(Iterator<E> other) {
+	return new LinkedListIterator(other);
     }
 
     @Override

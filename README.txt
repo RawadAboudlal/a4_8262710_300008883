@@ -1,5 +1,6 @@
-Student
+Students:
     Rawad Aboudlal (ID: 8262710, ITI1121 Section C)
+    Ismail Ali (ID: 300008883, ITI1121 Section C)
     
 This assignment consists of four questions, each in their separate directory named Q# (# is the number of the question).
 
