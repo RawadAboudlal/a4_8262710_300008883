@@ -51,89 +51,43 @@ public class BinarySearchTree<E extends Comparable<E>> {
 	    return 0;
 	}
 
-	Node<E> lowestCommonAncestor = findLowestCommonAncestor(root, low, high);
-
-	return count(root, low) + count(root, high) - (2 * (count(root, lowestCommonAncestor.value)) - 1);
+	return count(root, low, high);
 
     }
 
     /**
-     * This is the helper method that does all the work in terms of counting the
-     * number of elements from a {@link Node} to a {@link Node}, with element as its
-     * value, in the tree.
+     * This is the helper method that does all the work.
      * 
      * @param node
      *            The {@link Node} to start counting from.
-     * @param value
-     *            The element whose {@link Node} we count to.
-     * @return The number of nodes from <code>node</code> to <code>value</code>,
-     *         inclusively.
-     * @see #findLowestCommonAncestor(Node, Comparable, Comparable)
+     * @param low
+     *            The lower value.
+     * @param high
+     *            The higher value.
+     * @return
      */
-    private int count(Node<E> node, E value) {
+    private int count(Node<E> node, E low, E high) {
 
 	if (node == null) {
 	    return 0;
 	}
 
-	int valueCompareNode = value.compareTo(node.value);
+	int nodeCompareLow = node.value.compareTo(low);
+	int nodeCompareHigh = node.value.compareTo(high);
 
-	if (valueCompareNode > 0) {
-	    return 1 + count(node.right, value);
-	} else if (valueCompareNode < 0) {
-	    return 1 + count(node.left, value);
-	} else {
-	    return 1;
+	if (nodeCompareLow >= 0 && nodeCompareHigh <= 0) {
+	    return 1 + count(node.left, low, high) + count(node.right, low, high);
 	}
 
-    }
-
-    /**
-     * This is a helper method that find the lowest common ancestor between two
-     * elements in the tree. A {@link Node} is considered a "lowest common ancestor"
-     * (LCA) between two other nodes further down in the tree if:
-     * <ol>
-     * <li>This LCA has one node in its left subtree <b>and</b> the other node in
-     * its right subtree; or</li>
-     * <li>This LCA has both nodes in its left subtree; or</li>
-     * <li>This LCA has both nodes in its right subtree</li>
-     * </ol>
-     * </br>
-     * Note that this implementation uses two {@link Comparable} values that are in
-     * this tree to find the LCA.
-     * 
-     * @param node
-     *            The current {@link Node} used to check whether it matches the
-     *            criteria of a LCA node.
-     * @param value1
-     *            The value of the first node.
-     * @param value2
-     *            The value of the second node.
-     * @return The lowest common ancestor node of <code>value1</code> and
-     *         <code>value2</code> in this tree.
-     */
-    private Node<E> findLowestCommonAncestor(Node<E> node, E value1, E value2) {
-
-	if (node == null) {
-	    return null;
+	if (nodeCompareLow >= 0) {
+	    return 1 + count(node.right, low, high);
 	}
 
-	if (node.value.compareTo(value1) == 0 || node.value.compareTo(value2) == 0) {
-	    return node;
+	if (nodeCompareHigh <= 0) {
+	    return 1 + count(node.left, low, high);
 	}
 
-	Node<E> left = findLowestCommonAncestor(node.left, value1, value2);
-	Node<E> right = findLowestCommonAncestor(node.right, value1, value2);
-
-	if (left != null && right != null) {
-	    return node;
-	}
-
-	if (left != null) {
-	    return left;
-	} else {
-	    return right;
-	}
+	return 0;
 
     }
 

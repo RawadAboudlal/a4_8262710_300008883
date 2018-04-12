@@ -25,5 +25,22 @@ public class Q4 {
 
 	System.out.println(bTree.count(3, 6));
 
+	bTree = new BinarySearchTree<Integer>();
+
+	bTree.add(8);
+	bTree.add(3);
+	bTree.add(10);
+	bTree.add(1);
+	bTree.add(6);
+	bTree.add(14);
+	bTree.add(4);
+	bTree.add(7);
+	bTree.add(13);
+
+	System.out.println(bTree.count(3, 6));
+
+	// Should output 8.
+	System.out.println(bTree.count(1, 13));
+
     }
 }
