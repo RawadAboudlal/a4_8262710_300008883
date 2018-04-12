@@ -21,29 +21,17 @@ public class BinarySearchTree<E extends Comparable<E>> {
     private Node<E> root = null;
 
     /**
-     * <p>
      * Calculates the number of elements in the tree that are greater than or equal
      * to <code>low</code> and smaller than or equal to <code>high</code>.
-     * </p>
-     * 
-     * <p>
-     * In order to do this, this method first calculates the distance from the
-     * {@link #root} element to each of <code>low</code> and <code>high</code>. Then
-     * it will find the lowest common ancestor, in this binary tree, of these two
-     * elements. Finally, to get the number of elements between <code>low</code> and
-     * <code>high</code>, the following formula is applied: </br>
-     * </br>
-     * <code>distance = count(root, low) + count(root, high) - (2 * count(root,
-     * lowestCommonAncestor) - 1)</code>
-     * </p>
      * 
      * @param low
      *            The smaller element/lower bound to start counting from.
      * @param high
      *            The larger element/upper bound to stop counting at.
-     * @return The number elements between <code>low</code> and <code>high</code>,
+     * @return The number elements that are greater than or equal to
+     *         <code>low</code> and less than or equal to <code>high</code>,
      *         inclusively.
-     * @see #count(Node, Comparable)
+     * @see #count(Node, Comparable, Comparable)
      */
     public int count(E low, E high) {
 
@@ -56,7 +44,23 @@ public class BinarySearchTree<E extends Comparable<E>> {
     }
 
     /**
-     * This is the helper method that does all the work.
+     * <p>
+     * This is the helper method that does all the work for
+     * {@link #count(Comparable, Comparable)}.
+     * </p>
+     * 
+     * <p>
+     * This method will compare the value stored in <code>node</code> with that of
+     * <code>low</code> and <code>high</code>. If the value of <code>node</code> is
+     * both greater than or equal to that of <code>low</code> <b>and</b> less than
+     * or equal to <code>high</code> then we will count this node <i>and</i> count
+     * the number of nodes in both subtrees of this <code>node</code>, until
+     * <code>low</code> and <code>high</code> are found. Once <code>low</code> is
+     * found, we will check the right subtree of <code>node</code> until
+     * <code>high</code> is found. The same goes for
+     * <code>high<code>; once it is found, the function will continue to call itself until <code>low</code>
+     * is found. Once both are found, 0 is returned.
+     * </p>
      * 
      * @param node
      *            The {@link Node} to start counting from.
@@ -64,7 +68,9 @@ public class BinarySearchTree<E extends Comparable<E>> {
      *            The lower value.
      * @param high
      *            The higher value.
-     * @return
+     * @return The number of elements, in this {@link BinarySearchTree}, greater
+     *         than or equal to <code>low</code> and less than or equal to
+     *         <code>high</code>.
      */
     private int count(Node<E> node, E low, E high) {
 
