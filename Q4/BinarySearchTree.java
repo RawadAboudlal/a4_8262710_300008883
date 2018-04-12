@@ -58,7 +58,7 @@ public class BinarySearchTree<E extends Comparable<E>> {
      * <code>low</code> and <code>high</code> are found. Once <code>low</code> is
      * found, we will check the right subtree of <code>node</code> until
      * <code>high</code> is found. The same goes for
-     * <code>high<code>; once it is found, the function will continue to call itself until <code>low</code>
+     * <code>high</code>; once it is found, the function will continue to call itself until <code>low</code>
      * is found. Once both are found, 0 is returned.
      * </p>
      * 
